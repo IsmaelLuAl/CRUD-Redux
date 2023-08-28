@@ -1,0 +1,47 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "indent": ["error", 4],
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "capitalized-comments": ["off"],
+        "func-style": ["off"],
+        "linebreak-style": ["error", "unix"],
+        "multiline-comment-style": ["off"],
+        "require-jsdoc": ["off"],
+        "react/jsx-filename-extension": [ "error", {"extensions": [".tsx"]} ],
+        "react/forbid-component-props": [ "error", { "forbid": ["style"] }],
+        "react/jsx-curly-brace-presence": ["off"],
+        "react/function-component-definition": ["off"]
+        // "react/jsx-max-depth": ["error", { "max": 5 }]
+    }
+}
