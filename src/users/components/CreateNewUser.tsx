@@ -1,12 +1,15 @@
-import { Button, Card, TextInput, Title } from '@tremor/react'
-import React from 'react'
+import { Badge, Button, Card, TextInput, Title } from '@tremor/react'
+import React, { useState } from 'react'
 import { useUsersActions } from '../hooks/useUsersActions'
 
-export const CreateNewUser = () => {
+export const CreateNewUser: React.FC = () => {
   const { addUser } = useUsersActions()
+  const [result, setResult] = useState<'ok' | 'ko' | null>(null)
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
+
+    setResult(null)
     const form = event.target as HTMLFormElement
     const formData = new FormData(form)
 
@@ -15,7 +18,13 @@ export const CreateNewUser = () => {
     const email = formData.get('email') as string
     const github = formData.get('github') as string
 
+    if (!name || !email || !github) {
+      setResult('ko'); return
+    }
+
     addUser({ name, email, github })
+    setResult('ok')
+
     form.reset()
   }
 
@@ -32,6 +41,10 @@ export const CreateNewUser = () => {
           <Button type="submit" style={{ marginTop: '16px' }}>
             Crear Usuario
           </Button>
+          <span>
+            {result === 'ok' && <Badge color='green'>Guardado correctamente</Badge>}
+            {result === 'ko' && <Badge color='red'>No se ha guardado correctamente</Badge>}
+          </span>
         </div>
       </form>
     </Card>

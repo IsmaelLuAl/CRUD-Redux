@@ -1,12 +1,13 @@
-import { Card, Table, TableRow, TableCell, TableHead, TableHeaderCell, TableBody, Title, Badge } from '@tremor/react';
-import { useAppSelector } from '../hooks/store';
-import { useUsersActions } from '../hooks/useUsersActions';
+import React from 'react'
+import { Card, Table, TableRow, TableCell, TableHead, TableHeaderCell, TableBody, Title, Badge } from '@tremor/react'
+import { useAppSelector } from '../hooks/store'
+import { useUsersActions } from '../hooks/useUsersActions'
 
-export const ListOfUsers = () => {
+export const ListOfUsers: React.FC = () => {
   // El "state.users" se extrae de la store en la parte donde se encuentra cada uno de los reducers.
   // En este caso accedemos al users que se encuentra ahí
-  const users = useAppSelector((state) => state.users);
-  const { removeUser } = useUsersActions();
+  const users = useAppSelector((state) => state.users)
+  const { removeUser } = useUsersActions()
 
   return (
     <Card>
@@ -30,7 +31,7 @@ export const ListOfUsers = () => {
               <TableCell>{user.id}</TableCell>
               <TableCell style={{ display: 'flex', alignItems: 'center' }}>
                 <img
-                  style={{ width: "80px", borderRadius: "50%", marginRight: "8px" }}
+                  style={{ width: '80px', borderRadius: '50%', marginRight: '8px' }}
                   src={`https://unavatar.io/github/${user.github}`}
                   alt={user.name}
                 />
@@ -56,7 +57,7 @@ export const ListOfUsers = () => {
                 </button>
                 <button
                   onClick={() => {
-                    removeUser(user.id);
+                    removeUser(user.id)
                   }}
                   type="button"
                 >
@@ -82,5 +83,5 @@ export const ListOfUsers = () => {
         </TableBody>
       </Table>
     </Card>
-  );
-};
+  )
+}
