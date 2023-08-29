@@ -18,6 +18,7 @@ export const CreateNewUser: React.FC = () => {
     const email = formData.get('email') as string
     const github = formData.get('github') as string
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!name || !email || !github) {
       setResult('ko'); return
     }

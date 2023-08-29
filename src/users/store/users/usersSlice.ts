@@ -42,7 +42,7 @@ export interface UserWithId extends User {
 // Initial state with localStorage
 const initialState: UserWithId[] = (() => {
   const persistedState = localStorage.getItem('__redux__state__')
-  if (persistedState) {
+  if (persistedState != null) {
     return JSON.parse(persistedState).users
   }
   return DEFAULT_STATE
@@ -59,10 +59,16 @@ export const userSlice = createSlice({
     addNewUser: (state, action: PayloadAction<User>) => {
       const id = crypto.randomUUID()
       return [...state, { id, ...action.payload }]
+    },
+    rollBackUser: (state, action: PayloadAction<UserWithId>) => {
+      const isUserAlreadyDefined = state.some(user => user.id === action.payload.id)
+      if (!isUserAlreadyDefined) {
+        return [...state, action.payload]
+      }
     }
   }
 })
 
 export default userSlice.reducer
 
-export const { deleteUserById, addNewUser } = userSlice.actions
+export const { deleteUserById, addNewUser, rollBackUser } = userSlice.actions

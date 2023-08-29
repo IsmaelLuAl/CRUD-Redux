@@ -35,6 +35,7 @@ export const ListOfUsers: React.FC = () => {
                   src={`https://unavatar.io/github/${user.github}`}
                   alt={user.name}
                 />
+                <span>{user.name}</span>
               </TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.github}</TableCell>
